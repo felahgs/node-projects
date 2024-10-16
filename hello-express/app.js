@@ -3,7 +3,7 @@ const path = require("path");
 
 const rootDir = require("./util/path");
 
-const adminRoutes = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
 const bodyParser = require("body-parser");
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define a base path for static pages routing "e.g /css/main.css" css directory is located in public
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/admin", adminRoutes);
+app.use("/admin", adminData.routes);
 app.use("/", shopRoutes);
 
 app.use((req, res, next) => {
