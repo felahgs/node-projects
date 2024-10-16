@@ -10,7 +10,8 @@ const shopRoutes = require("./routes/shop");
 const app = express();
 
 // Set up Pug as the template engine
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 // Express also has a bodyParser implmented on its core.
