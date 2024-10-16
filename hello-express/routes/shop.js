@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   const products = adminData.products;
-  res.render("shop", { prods: products, docTitle: "Pug Shop" });
+  res.render("shop", { prods: products, pageTitle: "Pug Shop", path: "/" });
 
   // __dirname is an environment variable that tells you the absolute path of the directory containing the currently executing file.
   //   res.sendFile(path.join(__dirname, "../", "views", "shop.html"));
