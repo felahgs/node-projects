@@ -2,13 +2,17 @@ const express = require("express");
 const path = require("path");
 
 const rootDir = require("../util/path");
+const { render } = require("pug");
 
 const router = express.Router();
 
 const products = [];
 
 router.get("/add-product", (req, res, next) => {
-  res.sendFile(path.join(rootDir, "views", "add-product.html"));
+  res.render("add-product", { pageTitle: "Add Product" });
+
+  // Renders the add-product.html file.
+  // res.sendFile(path.join(rootDir, "views", "add-product.html"));
 });
 
 router.post("/add-product", (req, res, next) => {
