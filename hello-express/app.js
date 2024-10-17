@@ -4,8 +4,10 @@ const path = require("path");
 
 const rootDir = require("./util/path");
 
-const adminData = require("./routes/admin");
+const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+
+const fallbackController = require("./controllers/fallback");
 
 const app = express();
 
@@ -20,13 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define a base path for static pages routing "e.g /css/main.css" css directory is located in public
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/admin", adminData.routes);
+app.use("/admin", adminRoutes);
 app.use("/", shopRoutes);
 
-app.use((req, res, next) => {
-  res.status(404).render("not-found", { pageTitle: "Not found" });
-  // res.status(404).sendFile(path.join(__dirname, "views", "not-found.html"));
-});
+app.use(fallbackController.getNotFound);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
