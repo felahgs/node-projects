@@ -1,1 +1,8 @@
-[{"title":"book 5"},{"title":"book 1"},{"title":"2"},{"title":"2"},{"title":"2"},{"title":"6"},{"title":"8"},{"title":"87678"},{"title":"1"},{"title":"2"},{"title":"3"},{"title":"8"},{"title":"5"},{"title":"asdf"},{"title":"52"},{"title":"1"},{"title":"7875"},{"title":"0"},{"title":"23"},{"title":"4"},{"title":"qwe"},{"title":"asdasd"},{"title":"qwe"}]
+[
+    {
+        "title": "The Book",
+        "imageUrl": "https://shadycharacters.co.uk/wp/wp-content/uploads/2016/12/Book_IMG_1754-1-e1481474081467-980x1280.jpg",
+        "description": "Hundreds of books about books have been published during the past century…I will not claim that this one is the very best of all time. Yet The Book is possibly the best of our time.\r\n\r\nSteven Heller, Eye Magazine",
+        "price": "30"
+    }
+]
