@@ -23,6 +23,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = Math.random().toString();
     getProductsFromFile((products) => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), (err) => {
@@ -38,5 +39,12 @@ module.exports = class Product {
   // Static methods can be called from the class and not from intance object
   static fetchAll(callback) {
     getProductsFromFile(callback);
+  }
+
+  static findById(id, callback) {
+    getProductsFromFile((products) => {
+      const product = products.find((p) => p.id === id);
+      callback(product);
+    });
   }
 };

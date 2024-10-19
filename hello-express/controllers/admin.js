@@ -1,8 +1,20 @@
 const Product = require("../models/product");
 exports.getAddProductPage = (req, res, next) => {
-  res.render("admin/add-product", {
+  res.render("admin/edit-product", {
     pageTitle: "Add Product",
     path: "/admin/add-product",
+  });
+};
+
+exports.getEditProductPage = (req, res, next) => {
+  const editMode = req.query.editing;
+  if (!editMode) {
+    res.redirect("/");
+  }
+  res.render("admin/edit-product", {
+    pageTitle: "Add Product",
+    path: "/admin/edit-product",
+    editing: editMode ? "true" : "false",
   });
 };
 
