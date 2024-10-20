@@ -28,7 +28,6 @@ module.exports = class Product {
   save() {
     getProductsFromFile((products) => {
       if (this.id) {
-        console.log("THIS");
         const existingProductIndex = products.findIndex(
           (prod) => prod.id === this.id
         );
@@ -42,8 +41,6 @@ module.exports = class Product {
           }
         });
       } else {
-        console.log("ELSE");
-
         this.id = Math.random().toString();
         products.push(this);
         fs.writeFile(p, JSON.stringify(products), (err) => {

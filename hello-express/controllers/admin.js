@@ -59,7 +59,6 @@ exports.postEditProduct = (req, res, next) => {
     updatedDescription,
     updatedPrice
   );
-  console.log("updatedProduct", updatedProduct);
   updatedProduct.save();
   res.redirect("/admin/products");
 };

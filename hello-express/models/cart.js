@@ -38,12 +38,13 @@ module.exports = class Cart {
   }
 
   static deleteProduct(id, productPrice) {
-    console.log(id, productPrice);
     fs.readFile(p, (err, fileContent) => {
       if (err) {
         console.log("Error deleteing from cart", err);
         return;
       }
+
+      console.log("fileContent", fileContent);
       const updatedCart = { ...JSON.parse(fileContent) };
       const product = updatedCart.products.find((product) => product.id === id);
       const productQty = product.qty;
@@ -57,6 +58,17 @@ module.exports = class Cart {
       fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
         console.log(err);
       });
+    });
+  }
+
+  static getCart(callback) {
+    fs.readFile(p, (err, fileContent) => {
+      const cart = JSON.parse(fileContent);
+      if (err) {
+        callback(null);
+      } else {
+        callback(cart);
+      }
     });
   }
 };
