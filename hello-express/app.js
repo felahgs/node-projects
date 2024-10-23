@@ -8,6 +8,7 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
 const fallbackController = require("./controllers/fallback");
+const db = require("./util/database");
 
 const app = express();
 
