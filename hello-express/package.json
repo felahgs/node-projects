@@ -20,6 +20,7 @@
     "sequelize": "^6.37.5"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0"
+    "@types/express": "^5.0.0",
+    "@types/sequelize": "^4.28.20"
   }
 }
