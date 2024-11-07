@@ -11,6 +11,8 @@ const fallbackController = require("./controllers/fallback");
 const sequelize = require("./util/database");
 const Product = require("./models/product");
 const User = require("./models/user");
+const Cart = require("./models/cart");
+const CartItem = require("./models/cart-item");
 
 const app = express();
 
@@ -40,9 +42,14 @@ app.use(fallbackController.getNotFound);
 // The constraints define that the Product will be deleted if its User is deleted
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 // Check all the defined modules and create tables on the database it they don't exist.
 sequelize
+  // .sync({ force: true })
   .sync()
   .then((result) => {
     return User.findByPk(1);
@@ -50,12 +57,15 @@ sequelize
   })
   .then((user) => {
     if (!user) {
-      return User.create({ name: "Felipe", email: "test@test.com" });
+      return User.create({ name: "Felipe", email: "test@test.com" })
+        .then((user) => {
+          return user.createCart();
+        })
+        .catch((err) => console.log(err));
     }
     return user;
   })
-  .then((user) => {
-    console.log(user);
+  .then(() => {
     app.listen(3000, () => {
       console.log("Server is running on port 3000");
     });
