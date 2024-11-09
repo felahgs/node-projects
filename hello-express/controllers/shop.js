@@ -1,7 +1,6 @@
 const Product = require("../models/product");
-const Cart = require("../models/cart");
 
-exports.getIndexPage = (req, res, next) => {
+exports.getIndex = (req, res, next) => {
   Product.findAll()
     .then((products) => {
       res.render("shop/index", {
@@ -15,7 +14,7 @@ exports.getIndexPage = (req, res, next) => {
     });
 };
 
-exports.getProductsPage = (req, res, next) => {
+exports.getProducts = (req, res, next) => {
   Product.findAll()
     .then((products) => {
       res.render("shop/products", {
@@ -29,7 +28,7 @@ exports.getProductsPage = (req, res, next) => {
     });
 };
 
-exports.getProductPage = (req, res, next) => {
+exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findByPk(prodId)
     .then(({ dataValues: product }) => {
@@ -111,11 +110,36 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-exports.getOrdersPage = (req, res, next) => {
+exports.getOrders = (req, res, next) => {
   res.render("shop/orders", {
     pageTitle: "Orders",
     path: "orders",
   });
+};
+
+exports.postOrder = (req, res, next) => {
+  req.user
+    .getCart()
+    .then((cart) => {
+      return cart.getProducts();
+    })
+    .then((products) => {
+      return req.user
+        .createOrder()
+        .then((order) => {
+          return order.addProducts(
+            products.map((product) => {
+              product.orderItem = { quantity: product.cartItem.quantity };
+              return product;
+            })
+          );
+        })
+        .catch((err) => console.log(err));
+    })
+    .then(() => {
+      res.redirect("/orders");
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getCheckoutPage = (req, res, next) => {
