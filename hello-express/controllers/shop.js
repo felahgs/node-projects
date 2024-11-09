@@ -44,7 +44,7 @@ exports.getProduct = (req, res, next) => {
     });
 };
 
-exports.getCartPage = (req, res, next) => {
+exports.getCart = (req, res, next) => {
   req.user.getCart().then((cart) => {
     return cart
       .getProducts()
@@ -111,10 +111,15 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-  res.render("shop/orders", {
-    pageTitle: "Orders",
-    path: "orders",
-  });
+  req.user
+    .getOrders({ include: ["products"] }) // Get all orders from user including a fetch for each Product related to this order (from the relation).
+    .then((orders) => {
+      return res.render("shop/orders", {
+        path: "/orders",
+        pageTitle: "Your Orders",
+        orders: orders,
+      });
+    });
 };
 
 exports.postOrder = (req, res, next) => {
@@ -146,11 +151,4 @@ exports.postOrder = (req, res, next) => {
       res.redirect("/orders");
     })
     .catch((err) => console.log(err));
-};
-
-exports.getCheckoutPage = (req, res, next) => {
-  res.render("shop/checkout", {
-    pageTitle: "Checkout",
-    path: "/checkout",
-  });
 };
