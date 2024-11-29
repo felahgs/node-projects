@@ -21,7 +21,7 @@ A collection of small projects to help me learn and practice Node.js. This repos
    - Acessing Postgres DB using sequelize
    - Acessing MongoDB using Mangoose 
 
-## 🧑‍💻 Getting Started  
+## ⚙️ Getting Started  
 
 ### Prerequisites  
 
@@ -48,11 +48,6 @@ Make sure you have the following installed:
     node <filename>.js
   ```
 
-## 🧑‍💻 Contributions
-This is a personal learning repository, but contributions, ideas, or improvements are welcome!
-
-## 🛡️ License
-This repository is licensed under the MIT License. See the LICENSE file for more details.
 
 ## 🐹 Author
 
