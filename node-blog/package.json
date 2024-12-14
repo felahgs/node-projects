@@ -1,0 +1,25 @@
+{
+  "name": "node-blog",
+  "version": "1.0.0",
+  "description": "A simple blog written with nodejs and express for practice purposes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felahgs/node-blog.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "ejs",
+    "tailwind"
+  ],
+  "author": "Felipe Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felahgs/node-blog/issues"
+  },
+  "homepage": "https://github.com/felahgs/node-blog#readme"
+}
